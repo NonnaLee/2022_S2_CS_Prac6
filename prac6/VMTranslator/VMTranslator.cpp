@@ -39,7 +39,7 @@ string VMTranslator::vm_push(string segment, int offset){
 
 /** Generate Hack Assembly code for a VM pop operation */
 string VMTranslator::vm_pop(string segment, int offset){
-    auto m = S::PopGlobalStack();
+    S::PopGlobalStack();
     return "D=M // pop static " + to_string(offset) + "\n";
         "@=" + to_string(S::globalStaticAddress + offset) + "\n"
         "D=\n";
