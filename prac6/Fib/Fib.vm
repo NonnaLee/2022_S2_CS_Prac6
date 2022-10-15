@@ -1,0 +1,64 @@
+// Contains a function Fib.fib that calculates and returns the nth Fibonacci number recursively
+// n is supplied as an argument
+
+// Put your code here.
+function Fib.fib 3
+
+	push constant 0				// a = 0
+	pop local 0
+
+	push constant 1				// b = 1
+	pop local 1
+
+	push constant 0				// c = 0
+	pop local 2
+
+	push argument 0
+	push constant 0
+	eq
+	if-goto RETURN
+
+	push constant 1				// c = 1
+	pop local 2
+
+	push argument 0
+	push constant 1
+	eq 
+	if-goto RETURN
+
+	push constant 0				// c = 0
+	pop local 2
+
+	push argument 0				// n--
+	push constant 1
+	sub
+	pop argument 0
+
+label LOOP
+	push argument 0				// n--
+	push constant 1
+	sub
+	pop argument 0
+	
+	push argument 0				// if n == 0 then goto END, else then continue
+	push constant 0
+	lt
+	if-goto RETURN				
+		push local 0			// c = a + b
+		push local 1
+		add
+		pop local 2
+
+		push local 1			// a = b
+		pop local 0
+
+		push local 2			// b = c
+		pop local 1
+
+		
+
+		goto LOOP
+
+label RETURN
+	push local 2				// return c
+	return

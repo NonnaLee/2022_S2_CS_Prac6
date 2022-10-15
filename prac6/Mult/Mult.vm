@@ -1,0 +1,53 @@
+// Calculates a = x*y
+// a is a local variable
+// x & y are static variables
+
+// Put your code here.
+push constant 0			// sum = 0
+pop local 0 
+
+push static 0			// counter = x
+pop local 4 
+
+push static 1			// numToAdd = y
+pop local 3
+
+push constant 0			// if counter < 0 then neg counter
+push local 4
+lt
+if-goto LOOP			
+	push local 4			// else counter *= -1 // convert to positive
+	neg
+	pop local 4
+
+
+	push static 1	// numToAdd = -y
+	neg
+	pop local 3			
+
+
+
+
+label LOOP
+
+	push local 4		// counter--
+	push constant 1
+	sub
+	pop local 4
+				
+	push local 4		// if counter < 0 goto end
+	push constant 0
+	lt
+	if-goto END
+
+	push local 0		// sum += x
+	push local 3
+	add
+	pop local 0
+
+	goto LOOP			// else goto loop
+
+
+
+label END
+goto END
