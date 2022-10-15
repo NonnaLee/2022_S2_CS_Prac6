@@ -6,7 +6,6 @@
 #include <sstream>
 
 #include "VMTranslator.h"
-#include "S.cpp"
 
 using namespace std;
 

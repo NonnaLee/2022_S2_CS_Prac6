@@ -2,7 +2,7 @@
 
 #include "VMTranslator.h"
 #include "S.h"
-
+#include "S.cpp"
 using namespace std;
 
 
