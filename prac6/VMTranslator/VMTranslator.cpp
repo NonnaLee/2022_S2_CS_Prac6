@@ -40,7 +40,7 @@ string VMTranslator::vm_push(string segment, int offset){
         str += "D=M\n";
     }
     else if (segment == "static") {  
-        str += "@R" + to_string(offset) + "\n";
+        str += "@(R16+" + to_string(offset) + ")\n";
         str += "D=M\n";
     }
 

@@ -1,3 +1,4 @@
 push constant 1
+pop static 0
 push temp 1
 push static 1
