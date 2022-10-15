@@ -33,4 +33,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="vm_pushTest01.vm">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
 </Project>

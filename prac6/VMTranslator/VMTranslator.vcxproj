@@ -106,6 +106,9 @@
     <ClInclude Include="S.h" />
     <ClInclude Include="VMTranslator.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="vm_pushTest01.vm" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

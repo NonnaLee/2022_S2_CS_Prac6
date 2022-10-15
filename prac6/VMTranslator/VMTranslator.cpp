@@ -1,8 +1,8 @@
 #include <string>
 
 #include "VMTranslator.h"
-#include "S.h"
-#include "S.cpp"
+//#include "S.h"
+//#include "S.cpp"
 using namespace std;
 
 
@@ -35,8 +35,8 @@ string VMTranslator::vm_push(string segment, int offset){
         str += "D=A\n";
     }
     else if (segment == "temp") {
-        str += "// Push temp " + to_string(offset) + "\n" +
-        str += "@(5+i)" + to_string(offset) + "\n";
+        str += "// Push temp \n" +
+        str += "@(5+" + to_string(offset) + ")\n";
         str += "D=M\n";
     }
     // Push Constant On Stack
@@ -52,7 +52,7 @@ string VMTranslator::vm_push(string segment, int offset){
 
 /** Generate Hack Assembly code for a VM pop operation */
 string VMTranslator::vm_pop(string segment, int offset){
-    S::PopGlobalStack();
+    //S::PopGlobalStack();
     string str; 
     // Set Data to Stack Pointer
     str += "@SP // pop static " + to_string(offset) + "\n";
@@ -69,11 +69,12 @@ string VMTranslator::vm_pop(string segment, int offset){
 
 /** Generate Hack Assembly code for a VM add operation */
 string VMTranslator::vm_add(){
-    S::PopGlobalStack();
-    auto m = S::PopGlobalStack();
-    return "D=M // ADD \n"
-            "@="+ to_string(m) +"\n"
-            "D=M+D\n";
+    //S::PopGlobalStack();
+    //auto m = S::PopGlobalStack();
+    return "";
+    //return "D=M // ADD \n"
+    //        "@="+ to_string(m) +"\n"
+    //        "D=M+D\n";
 }
 
 /** Generate Hack Assembly code for a VM sub operation */
