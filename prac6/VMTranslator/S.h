@@ -3,7 +3,7 @@
 
 class S {
 public:
-    static const int globalStackAddress = 100;
+    static const int globalStackAddress = 256;
     static const int globalStaticAddress = 1000;
     static int stackCounter;
     static int PushGlobalStack();

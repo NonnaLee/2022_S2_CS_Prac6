@@ -28,10 +28,11 @@ VMTranslator::~VMTranslator() {
 string VMTranslator::vm_push(string segment, int offset){
     //S s;
     if (segment == "constant") {
-        //int m = S::PushGlobalStack();
+        int m = S::PushGlobalStack();
         return  "@" + to_string(offset) + " // push constant " + to_string(offset) + "\n"
-                "D=A\n";
-            //"m=" + to_string(offset) + "\n";
+                "D=A\n"+
+                "@"+to_string(m)+"\n"+
+                "M=D\n";
     }
     else {
         return "";
