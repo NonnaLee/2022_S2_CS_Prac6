@@ -28,11 +28,21 @@ VMTranslator::~VMTranslator() {
 string VMTranslator::vm_push(string segment, int offset){
     //S s;
     if (segment == "constant") {
-        int m = S::PushGlobalStack();
-        return  "@" + to_string(offset) + " // push constant " + to_string(offset) + "\n"
-                "D=A\n"+
-                "@"+to_string(m)+"\n"+
-                "M=D\n";
+        //int m = S::PushGlobalStack();
+        string str;
+        // Set Data to constant
+        str += "@" + to_string(offset) + "// push constant " + to_string(offset) + "\n";
+        str += "D=A\n";
+
+        // Push Constant On Stack
+        str += "@SP\n";
+        str += "A=M\n";
+        str += "M=D\n";
+
+        // Inc Stack Pointer
+        str += "@SP\n";
+        str += "M=M+1\n";
+        return str;
     }
     else {
         return "";
@@ -42,9 +52,18 @@ string VMTranslator::vm_push(string segment, int offset){
 /** Generate Hack Assembly code for a VM pop operation */
 string VMTranslator::vm_pop(string segment, int offset){
     S::PopGlobalStack();
-    return "D=M // pop static " + to_string(offset) + "\n";
-        "@=" + to_string(S::globalStaticAddress + offset) + "\n"
-        "D=\n";
+    string str; 
+    // Set Data to Stack Pointer
+    str += "@SP // pop static " + to_string(offset) + "\n";
+    str += "A=M\n";
+    str += "D=M\n"; 
+    // Set Static to Data
+    str += "@"+to_string(offset)+"\n";
+    str += "M=D\n";
+    // Pop Stack Pointer
+    str += "@SP\n";
+    str += "M=M-1\n";
+    return str;
 }
 
 /** Generate Hack Assembly code for a VM add operation */
