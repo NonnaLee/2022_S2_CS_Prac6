@@ -28,6 +28,7 @@ VMTranslator::~VMTranslator() {
 string VMTranslator::vm_push(string segment, int offset){
     //S s;
     string str;
+    str += "// Push " + segment + " " + to_string(offset) + "\n";
     if (segment == "constant") {
         // Set Data to constant
         str += "// push constant " + to_string(offset) + "\n" +
@@ -35,10 +36,14 @@ string VMTranslator::vm_push(string segment, int offset){
         str += "D=A\n";
     }
     else if (segment == "temp") {
-        str += "// Push temp \n" +
         str += "@(5+" + to_string(offset) + ")\n";
         str += "D=M\n";
     }
+    else if (segment == "static") {  
+        str += "@R" + to_string(offset) + "\n";
+        str += "D=M\n";
+    }
+
     // Push Constant On Stack
     str += "@SP\n";
     str += "A=M\n";
