@@ -27,26 +27,27 @@ VMTranslator::~VMTranslator() {
 /** Generate Hack Assembly code for a VM push operation */
 string VMTranslator::vm_push(string segment, int offset){
     //S s;
+    string str;
     if (segment == "constant") {
-        //int m = S::PushGlobalStack();
-        string str;
         // Set Data to constant
-        str += "@" + to_string(offset) + "// push constant " + to_string(offset) + "\n";
+        str += "// push constant " + to_string(offset) + "\n" +
+        str += "@" + to_string(offset) + "\n";
         str += "D=A\n";
-
-        // Push Constant On Stack
-        str += "@SP\n";
-        str += "A=M\n";
-        str += "M=D\n";
-
-        // Inc Stack Pointer
-        str += "@SP\n";
-        str += "M=M+1\n";
-        return str;
     }
-    else {
-        return "";
+    else if (segment == "temp") {
+        str += "// Push temp " + to_string(offset) + "\n" +
+        str += "@(5+i)" + to_string(offset) + "\n";
+        str += "D=M\n";
     }
+    // Push Constant On Stack
+    str += "@SP\n";
+    str += "A=M\n";
+    str += "M=D\n";
+
+    // Inc Stack Pointer
+    str += "@SP\n";
+    str += "M=M+1\n";
+    return str;
 }
 
 /** Generate Hack Assembly code for a VM pop operation */
